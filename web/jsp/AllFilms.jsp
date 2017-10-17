@@ -10,8 +10,14 @@
     <%@include file="inc/menu.jsp" %>
     
     <div class="col-md-8" style="padding: 0;">
-        <h1 class="col-md-12" style="text-align: center; border-bottom: 1px solid activecaption">Accueil</h1>
-        <!--<img class="col-md-12" src="images/soap-bubble-2802439_1920.jpg" alt="">-->
+        <h1 class="col-md-12" style="text-align: center; border-bottom: 1px solid activecaption">Tous les films</h1>
+        <p>Tous les films</p>
+        
+        
+<c:forEach items="${datas}" var="element">
+    <p>${element.status}</p>
+</c:forEach>        
+        
     </div>    
     
 </main>

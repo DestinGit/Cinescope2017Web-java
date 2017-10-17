@@ -5,9 +5,11 @@
  */
 package fr.pb.controls;
 
-import connexion.Connexion;
+import fr.pb.daos.FilmDAO;
+import fr.pb.entities.Film;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author formation
  */
-@WebServlet(name = "MainController", urlPatterns = {"/MainController"})
-public class MainController extends HttpServlet {
+@WebServlet(name = "AllFilms", urlPatterns = {"/AllFilms"})
+public class AllFilms extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -34,23 +36,23 @@ public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /**
-         * Connexion au serveur de BD
-         */
-//        Connection lcn = Connexion.getConnectionMySQL("localhost", "cours", "3306", "root", "");
-        Connection lcn = Connexion.getConnectionMySQL("172.26.10.166", "cinescope2017", "3306", "p", "b");
-        
+
         // Récupération de la session courante
         HttpSession session = request.getSession();
-        
-        /*
-        * Mise en session de la connexion BD
-        */
-        session.setAttribute("gcnx", lcn);
-        
-        request.setAttribute("accueil", "active");
-        
-        String lsURL = "Accueil.jsp";
-        getServletContext().getRequestDispatcher("/jsp/" + lsURL).forward(request, response);        
+
+        Connection lcn = (Connection) session.getAttribute("gcnx");
+        FilmDAO dao = new FilmDAO(lcn);
+        List<Film> f;
+
+        f = dao.selectAll();
+//        for (Film rs : f) {
+//            System.out.println(rs.getTitreFilm());
+//        }
+        request.setAttribute("allfilms", "active");
+        request.setAttribute("datas", f);
+        // redirection vers la page "AllFilms.jsp"
+        String lsURL = "AllFilms.jsp";
+        getServletContext().getRequestDispatcher("/jsp/" + lsURL).forward(request, response);
+
     }
 }
