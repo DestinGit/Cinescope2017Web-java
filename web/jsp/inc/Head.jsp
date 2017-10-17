@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
             body {
-                /*background: url("images/soap-bubble-824558_1920.jpg") no-repeat center;*/
+                background: url("images/movie-2545676_1920.jpg") no-repeat center;
             }
             nav {
                 background: black;
