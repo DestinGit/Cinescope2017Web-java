@@ -6,10 +6,14 @@
 package fr.pb.controls;
 
 import fr.pb.daos.FilmDAO;
+import fr.pb.daos.GenericDAO;
+import fr.pb.daos.RubriqueDAO;
 import fr.pb.entities.Film;
+import fr.pb.entities.Rubrique;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,15 +45,20 @@ public class AllFilms extends HttpServlet {
         HttpSession session = request.getSession();
 
         Connection lcn = (Connection) session.getAttribute("gcnx");
-        FilmDAO dao = new FilmDAO(lcn);
-        List<Film> f;
+//        FilmDAO dao = new FilmDAO(lcn);
+//        List<Film> f;
 
-        f = dao.selectAll();
-//        for (Film rs : f) {
-//            System.out.println(rs.getTitreFilm());
-//        }
-        request.setAttribute("allfilms", "active");
-        request.setAttribute("datas", f);
+//        f = dao.selectAll();
+        GenericDAO gDao = new GenericDAO(lcn);
+        List<Map<String, String>> res = gDao.selectFilmRubrique();
+        request.setAttribute("listMap", res);
+
+        RubriqueDAO rDao = new RubriqueDAO(lcn);
+        List<Rubrique> rub = rDao.selectAll();
+        request.setAttribute("rubriques", rub);
+        
+//        request.setAttribute("allfilms", "active");
+//        request.setAttribute("datas", f);
         // redirection vers la page "AllFilms.jsp"
         String lsURL = "AllFilms.jsp";
         getServletContext().getRequestDispatcher("/jsp/" + lsURL).forward(request, response);

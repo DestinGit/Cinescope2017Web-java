@@ -1,7 +1,7 @@
-<nav class="col-md-2 col-md-offset-1">
-    <ul class="nav nav-pills nav-stacked" id="menu">
+<!--<nav class="col-md-2 col-md-offset-1">-->
+<nav class="navbar navbar-inverse">
+    <ul class="nav nav-pills" id="menu">
         <li class="active"><a href="/Cinescope2017Web">Accueil</a></li>
-        <!--<li class="${accueil1}"><a href="/Cinescope2017Web">Accueil</a></li>-->
         <li class="${allfilms1}"><a href="/Cinescope2017Web/AllFilms">Tous les films</a></li>
         <li ><a href="#">Nouveaux films</a></li>
         <li><a href="#">Autres films</a></li>
