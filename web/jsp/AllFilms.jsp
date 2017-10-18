@@ -5,20 +5,20 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="inc/Head.jsp" %>
 <main class="row">
     <%@include file="inc/menu.jsp" %>
-    
+
     <div class="col-md-8" style="padding: 0;">
         <h1 class="col-md-12" style="text-align: center; border-bottom: 1px solid activecaption">Tous les films</h1>
         <p>Tous les films</p>
-        
-        
-<c:forEach items="${datas}" var="element">
-    <p>${element.status}</p>
-</c:forEach>        
-        
+
+        <c:forEach items="${datas}" var="element">
+            <p style="color: white">${element.titreFilm}</p>
+        </c:forEach>    
+            
     </div>    
-    
+
 </main>
 <%@include file="inc/Foot.jsp" %>
