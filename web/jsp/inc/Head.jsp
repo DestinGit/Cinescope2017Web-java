@@ -9,51 +9,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Bootstrap core CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="css/style.css" rel="stylesheet">
 
         <!--MATERIAL CSS-->
         <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
         <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
 
         <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
         <!-- FIN MATERIAL CSS-->
 
-        <style>
-            /*            body {
-                            background: url("images/movie-2545676_1920.jpg") no-repeat center;
-                        }
-                        nav {
-                            background: black;
-                        }*/
-            #column_gap {
-                -webkit-column-count: 5;
-                -moz-column-count: 5;
-                column-count: 5;
-                -moz-column-gap: 2em;
-                -webkit-column-gap: 2em;
-                column-gap: 2em;
-            }
-
-            .codeRub {
-                background: black;
-                padding: 4px;
-            }
-            /*ul#menu li{display: inline-block;}*/
-        </style>
     </head>
-    <body class="container-fluid">
-        <header class="col-md-10 col-md-offset-1">
-            <div>ENTETE</div>
-        </header>
-        <!--<nav class="col-md-10 col-md-offset-1" style="text-align: right;">-->
-        <nav class="nav-extended">
-            <%@include file="menus.jsp" %>
-        </nav>
+    <!--<body class="container-fluid">-->
+    <body>
+        <header>
 
-        <!--        <div class="col-md-10 col-md-offset-1">
-        <%--<%@include file="menu.jsp" %>--%>
-    </div>-->
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark fixed-top">
+                <!--<nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top">-->
+                <%@include file="menu-fixed.jsp" %>
+            </nav>
+        </header>
+        <!--        <nav class="nav-extended">
+        <%--<%@include file="menus.jsp" %>--%>
+    </nav>-->
