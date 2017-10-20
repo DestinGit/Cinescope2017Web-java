@@ -13,8 +13,8 @@
             <div>Lorem ipsum dolor sit amet.</div>
         </div>
         <div class="col-md-4 picto">
-            <div>Lorem ipsum dolor sit amet.</div>
             <figure><img src="" alt=""><figcaption>Titre 2</figcaption></figure>
+            <div>Lorem ipsum dolor sit amet.</div>
         </div>
         <div class="col-md-4 picto">
             <figure><img src="" alt=""><figcaption>Titre 3</figcaption></figure>
