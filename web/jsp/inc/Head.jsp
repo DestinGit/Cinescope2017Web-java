@@ -32,6 +32,11 @@
         <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
         <!-- FIN MATERIAL CSS-->
 
+        <style>
+            main {
+                margin-top: 85px;
+            }
+        </style>
     </head>
     <!--<body class="container-fluid">-->
     <body>
