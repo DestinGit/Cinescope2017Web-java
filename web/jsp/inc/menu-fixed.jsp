@@ -13,7 +13,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">          
             <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/Cinescope2017Web/MainController">Accueil<span class="sr-only">(current)</span></a>
             </li>
             
             <!-- Dropdown Films-->
