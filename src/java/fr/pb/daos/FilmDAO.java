@@ -5,6 +5,7 @@
  */
 package fr.pb.daos;
 
+import connexion.Connexion;
 import fr.pb.entities.Film;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,6 +18,41 @@ import java.util.List;
 public class FilmDAO {
 
     private final Connection icn;
+    public static String getHPP() {
+
+        String lsEnr;
+
+        StringBuilder lsb = new StringBuilder();
+
+        //Connection lcn = getConnexionMySQL(String asServeur, String asBD, String asPort, String asUT, String asMDP);
+        Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
+
+        try {
+            PreparedStatement lpst = lcn.prepareStatement("CALL xxx_hit_parade_du_public()");
+            ResultSet lrs = lpst.executeQuery();
+            
+            lsb.append("Entrees semaine | Nombre semaines | Total entrées\n");
+            
+            while (lrs.next()) {
+
+                lsb.append(lrs.getString(1));
+                lsb.append("|");
+                lsb.append(lrs.getString(2));
+                lsb.append("|");
+                lsb.append(lrs.getString(3));
+                lsb.append("|");
+                lsb.append(lrs.getString(4));
+                lsb.append("\n");
+
+            }
+        } catch (SQLException e) {
+            lsb.append(e.getMessage());
+        }
+
+        Connexion.disconnection(lcn);
+
+        return lsb.toString();
+    } /// getHPP
 
     public FilmDAO(Connection icn) {
         this.icn = icn;
