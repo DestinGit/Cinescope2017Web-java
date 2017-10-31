@@ -15,10 +15,9 @@
                 <div class="card">
                     <!--Card image-->
                     <div class="view overlay hm-white-slight">
-                        <!--<img src="img/jpg/picto/133_354292.jpg" class="img-fluid" alt="">-->
                         <img src="img/jpg/img${i}.jpg" class="img-fluid" alt="">
+                        <!--<img src="img/jpg/img${i}.jpg" width="354" height="236" alt="">-->
                         <!--<img src="img/jpg/img (72).jpg" class="img-fluid" alt="">-->
-                        <a href="#">
                             <div class="mask"></div>
                         </a>
                     </div>
