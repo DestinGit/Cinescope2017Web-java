@@ -38,7 +38,8 @@ public class MainController extends HttpServlet {
          * Connexion au serveur de BD
          */
 //        Connection lcn = Connexion.getConnectionMySQL("localhost", "cours", "3306", "root", "");
-        Connection lcn = Connexion.getConnectionMySQL("172.26.10.166", "cinescope2017", "3306", "p", "b");
+//        Connection lcn = Connexion.getConnectionMySQL("172.26.10.166", "cinescope2017", "3306", "p", "b");
+        Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
         
         // Récupération de la session courante
         HttpSession session = request.getSession();
