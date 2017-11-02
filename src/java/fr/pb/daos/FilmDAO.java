@@ -31,16 +31,16 @@ public class FilmDAO {
             PreparedStatement lpst = lcn.prepareStatement("CALL xxx_hit_parade_du_public()");
             ResultSet lrs = lpst.executeQuery();
             
-            lsb.append("Entrees semaine | Nombre semaines | Total entrées\n");
+            lsb.append("Entrees semaine # Nombre semaines # Total entrées\n");
             
             while (lrs.next()) {
 
                 lsb.append(lrs.getString(1));
-                lsb.append("|");
+                lsb.append("#");
                 lsb.append(lrs.getString(2));
-                lsb.append("|");
+                lsb.append("#");
                 lsb.append(lrs.getString(3));
-                lsb.append("|");
+                lsb.append("#");
                 lsb.append(lrs.getString(4));
                 lsb.append("\n");
 
