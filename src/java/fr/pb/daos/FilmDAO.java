@@ -9,7 +9,11 @@ import connexion.Connexion;
 import fr.pb.entities.Film;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -18,6 +22,30 @@ import java.util.List;
 public class FilmDAO {
 
     private final Connection icn;
+    
+    public static String getBOInJSON(){
+        JSONArray objArray = new JSONArray();
+        Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
+        try{
+            Map<String, String> mapBO;
+            JSONObject objJson;
+            
+            PreparedStatement lpst = lcn.prepareStatement("CALL xxx_box_office()");
+            ResultSet lrs = lpst.executeQuery(); 
+            while(lrs.next()) {
+//                mapBO = new LinkedHashMap();
+                objJson = new JSONObject();
+                objJson.put("titre", lrs.getString(1));
+                objJson.put("entree", lrs.getString(2));
+                objArray.put(objJson);
+            }
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return objArray.toString();
+    }
+    
     public static String getHPP() {
 
         String lsEnr;
