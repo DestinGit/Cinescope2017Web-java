@@ -41,11 +41,13 @@ public class User extends HttpServlet {
             out.print(UsersDAO.getJSONUser(request.getParameter("nom"), request.getParameter("mdp")));
         }
         if(lsAction.equals("edit")){
+            System.out.println("MODIFICATION");
             out.print(UsersDAO.UpdateUser(Integer.valueOf(request.getParameter("id")),
                     request.getParameter("email"), request.getParameter("mdp")));
         }
         if(lsAction.equals("delete")){
-            out.print(UsersDAO.DeleteUser(Integer.valueOf(request.getParameter("nom"))));
+            System.out.println("DELELE");
+            out.print(UsersDAO.DeleteUser(Integer.valueOf(request.getParameter("id"))));
         }
     }
 

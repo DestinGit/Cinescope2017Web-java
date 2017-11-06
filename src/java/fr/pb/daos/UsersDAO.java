@@ -44,8 +44,9 @@ public class UsersDAO {
 
             if (lrs.next()) {
                 objJson = new JSONObject();
-                objJson.put("idUser", lrs.getInt(1));
+                objJson.put("id", lrs.getInt(1));
                 objJson.put("nom", lrs.getString(2));
+                objJson.put("mdp", lrs.getString(3));
                 objJson.put("email", lrs.getString(4));
                 objArray.put(objJson);
             }
@@ -66,11 +67,14 @@ public class UsersDAO {
      * @param mdp
      * @return
      */
-    public static int UpdateUser(int id, String email, String mdp) {
+    public static String UpdateUser(int id, String email, String mdp) {
         int nbLine = -1;
+        JSONArray objArray = new JSONArray();
+        JSONObject objJson = new JSONObject();
+        
         Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
         try {
-            PreparedStatement lpst = lcn.prepareStatement("UPDATE utilisateur SET email=?, mdp=? WHERE id=?");
+            PreparedStatement lpst = lcn.prepareStatement("UPDATE utilisateur SET email=?, mdp=? WHERE idUtilisateur=?");
             lpst.setString(1, email);
             lpst.setString(2, mdp);
             lpst.setInt(3, id);
@@ -78,10 +82,14 @@ public class UsersDAO {
 
             lcn.commit();
 
+            objJson.put("ligne", nbLine);
+            objArray.put(objJson);            
+
         } catch (SQLException e) {
         }
         Connexion.disconnection(lcn);
-        return nbLine;
+        
+        return objArray.toString();
     }
 
     /**
@@ -89,19 +97,28 @@ public class UsersDAO {
      * @param id
      * @return
      */
-    public static int DeleteUser(int id) {
+    public static String DeleteUser(int id) {
         int nbLine = -1;
+        JSONArray objArray = new JSONArray();
+        JSONObject objJson = new JSONObject();
         Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
+        System.out.println(id);
         try {
-            PreparedStatement lpst = lcn.prepareStatement("DELETE * FROM utilisateur WHERE id=?");
+            PreparedStatement lpst = lcn.prepareStatement("DELETE FROM utilisateur WHERE idUtilisateur=?");
             lpst.setInt(1, id);
             nbLine = lpst.executeUpdate();
-
+            
+            objJson.put("ligne", nbLine);
+            objArray.put(objJson);
+            
             lcn.commit();
 
         } catch (SQLException e) {
+            System.out.println("ERRRRE : " + e.getMessage());
         }
         Connexion.disconnection(lcn);
-        return nbLine;
+        
+        
+        return objArray.toString();
     }
 }
