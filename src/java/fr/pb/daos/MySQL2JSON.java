@@ -35,7 +35,7 @@ public class MySQL2JSON {
             
             while(lrs.next()) {
                 objetJSON = new JSONObject();
-                for(int i = 1; i < liCols; i++) {
+                for(int i = 1; i <= liCols; i++) {
                     objetJSON.put(lrsmd.getColumnName(i), lrs.getString(i));
                 }
                 jsonTab.put(objetJSON);
