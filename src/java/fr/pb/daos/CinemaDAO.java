@@ -19,10 +19,10 @@ import org.json.JSONObject;
 public class CinemaDAO {
 
     public static JSONObject getAdressFromOneCinema(String psCodeCinema) {
-        String str;
         JSONObject objeJSON = null;
 
-        String lsSQL = "SELECT adresse_cinema FROM cinema WHERE code_cinema = ?";
+        String lsSQL = "SELECT c.adresse_cinema, v.nom_ville FROM cinema c"
+                + " INNER JOIN ville v ON c.id_ville = v.id_ville WHERE code_cinema = ?";
         Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
         try {
             // Préparation de la requete
@@ -30,14 +30,16 @@ public class CinemaDAO {
             lpst.setString(1, psCodeCinema);
             // Exécution de la requete
             ResultSet lrs = lpst.executeQuery();
-
-            if (lrs.next()) {
-                str = lrs.getString(1);
-            } else {
-                str = "Introuvable";
-            }
+            
             objeJSON = new JSONObject();
-            objeJSON.put("adresse", str);
+            if (lrs.next()) {
+                objeJSON.put("adresse", lrs.getString(1));
+                objeJSON.put("ville", lrs.getString(2));
+            } else {
+                objeJSON.put("adresse", "Introuvable");
+                objeJSON.put("ville", "");
+            }
+
         } catch (SQLException ex) {
             System.out.println("ERROR : " + ex.getMessage());
         }
