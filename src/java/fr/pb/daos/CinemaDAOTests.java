@@ -5,6 +5,7 @@
  */
 package fr.pb.daos;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -18,7 +19,7 @@ public class CinemaDAOTests {
      */
     public static void main(String[] args) {
 //        JSONObject o = CinemaDAO.setLatLngInOneCinema("35I",48.22,2.44);
-        JSONObject o = CinemaDAO.getAdressFromOneCinema("35I");
+        JSONArray o = CinemaDAO.getAdressesFromCinema();
         System.out.println(o);
     }
 }
