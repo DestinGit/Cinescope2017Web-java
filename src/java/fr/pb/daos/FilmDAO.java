@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -119,5 +121,35 @@ public class FilmDAO {
         }
         // renvoi de la liste des résultats (une list d'objets)
         return resultList;        
+    }
+    
+    public static JSONArray selectByBeginningOfTitle(String chaine) {
+        // mes variables
+        JSONArray tableauJSON = new JSONArray();
+        JSONObject ObjectJSON;
+
+        Connection lcn = Connexion.getConnectionMySQL("172.26.55.55", "cinescope2014", "3306", "p", "b");
+
+        try {
+            PreparedStatement lpst = lcn.prepareStatement("select ID_film, TITRE_film from film WHERE titre_film LIKE ?");
+            lpst.setString(1, chaine + "%");
+            ResultSet lrs = lpst.executeQuery();
+
+            // à chaque enregistrement de mon curseur, j'instancie un objet json que je put à un tableau de json
+            int i = 1;
+            while (lrs.next()) {
+                ObjectJSON = new JSONObject();
+                ObjectJSON.put("id", lrs.getString(1));
+                ObjectJSON.put("titre", lrs.getString(2));
+                i++;
+                tableauJSON.put(ObjectJSON);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Connexion.disconnection(lcn);
+
+        return tableauJSON;
     }
 }
